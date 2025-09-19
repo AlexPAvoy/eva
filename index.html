@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Romántico</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-top: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .gatitos {
+      margin: 30px auto;
+      width: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: beso 2s infinite;
+    }
+
+    .gatitos img {
+      width: 100px;
+      margin: 0 5px;
+    }
+
+    @keyframes beso {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .carta-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .carta-btn:hover {
+      background: #e63e5e;
+    }
+
+    .carta {
+      display: none;
+      margin: 20px auto;
+      max-width: 90%;
+      background: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* Animación de corazones cayendo */
+    .corazon {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: rgba(255,255,255,0.8);
+      animation: caer 6s linear infinite;
+    }
+
+    @keyframes caer {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    /* Palabras "te amo" */
+    .te-amo {
+      position: fixed;
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0;
+      animation: aparecer 2s infinite;
+      color: rgba(255,255,255,0.5);
+      pointer-events: none;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <h1> Te quiero mucho</h1>
+
+  <div class="gatitos">
+    <img src="gatos.png" alt="Gatito 1">
+  </div>
+
+  <button class="carta-btn" onclick="mostrarCarta()">📩 Ver mi carta para ti</button>
+
+  <div class="carta" id="carta">
+    Estás en mi mente y en mi corazón siempre, no salgas nunca de ahí que alegras mis días.  
+    Te quiero mucho porque sin querer cambiar nada en mí, llegaste a cambiarlo todo 🤍
+  </div>
+
+  <script>
+    function mostrarCarta() {
+      const carta = document.getElementById("carta");
+      carta.style.display = carta.style.display === "block" ? "none" : "block";
+    }
+
+    // Corazones cayendo
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.innerHTML = "🤍";
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(corazon);
+
+      setTimeout(() => { corazon.remove(); }, 6000);
+    }
+    setInterval(crearCorazon, 500);
+
+    // Palabras "te amo"
+    function crearTeAmo() {
+      const teAmo = document.createElement("div");
+      teAmo.classList.add("te-amo");
+      teAmo.innerText = "Te quiero mucho";
+      teAmo.style.left = Math.random() * window.innerWidth + "px";
+      teAmo.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(teAmo);
+
+      setTimeout(() => { teAmo.remove(); }, 4000);
+    }
+    setInterval(crearTeAmo, 2500);
+  </script>
+</body>
+</html>
